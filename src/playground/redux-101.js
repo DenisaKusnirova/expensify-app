@@ -24,7 +24,15 @@ const resetCount = () => ({
   type: 'RESET'
 })
 
-const store = createStore((state = { count: 0 }, action) => {
+// This function- REDUCER:
+// Actions describe the fact that something happened, but they don't specify how
+// the application's state changes in responce- this is the job of reducers
+
+// Reducers:
+// 1. Reducers are pure funcions- output is only determined by the input
+// 2. Never change state or action
+
+const countReducer = (state = { count: 0 }, action) => {
   switch (action.type) {
 
     case 'INCREMENT':
@@ -50,7 +58,9 @@ const store = createStore((state = { count: 0 }, action) => {
     default:
       return state
   }
-})
+}
+
+const  store = createStore(countReducer)
 
 // you can watch the changes with subscribe:
 // you can fetch the state with getState function
