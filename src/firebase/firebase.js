@@ -12,12 +12,72 @@ const config = {
 firebase.initializeApp(config)
 
 const database = firebase.database()
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 
+export { firebase, googleAuthProvider, database as default }
+
+// // child_removed
+// database.ref('expenses').on('child_removed', (snapshot) => {
+//   console.log(snapshot.key, snapshot.val());
+// })
+//
+// // child_changed
+// database.ref('expenses').on('child_changed', (snapshot) => {
+//   console.log(snapshot.key, snapshot.val());
+// })
+//
+// // child_added
+// database.ref('expenses').on('child_added', (snapshot) => {
+//   console.log(snapshot.key, snapshot.val());
+// })
+// database.ref('expenses').push({
+//   description: 'Rent',
+//   note: '',
+//   amount: 1500,
+//   createdAt: 93461957485
+// })
+
+// FETCH the expense:
+// database.ref('expenses')
+//   .once('value')
+//   .then((snapshot) => {
+//     const expenses = []
+//
+//     snapshot.forEach((childSnapshot) => {
+//       expenses.push({
+//         id: childSnapshot.key,
+//         ...childSnapshot.val()
+//       })
+//     })
+//
+//     console.log(expenses);
+//   })
+
+// SUBSCRIBE to the expense:
+// database.ref('expenses').on('value', (snapshot) => {
+//   const expenses = []
+//
+//       snapshot.forEach((childSnapshot) => {
+//         expenses.push({
+//           id: childSnapshot.key,
+//           ...childSnapshot.val()
+//         })
+//       })
+//
+//       console.log(expenses);
+// })
+// Arrays in firebase:
+// database.ref('notes').push({
+//   title: 'Course',
+//   body: 'Angular, Python'
+// })
+
+// database.ref('notes').set(notes)
 // set up data subscribtion:
-database.ref().on('value', (snapshot) => {
-  const val = snapshot.val()
-  console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
-})
+// database.ref().on('value', (snapshot) => {
+//   const val = snapshot.val()
+//   console.log(`${val.name} is a ${val.job.title} at ${val.job.company}`);
+// })
 
 // change the data and make sure it reprints:
 
@@ -49,7 +109,7 @@ database.ref().on('value', (snapshot) => {
 // }).catch((e) => {
 //   console.log('This failed.', e);
 // })
-//
+
 // // UPDATING data:
 // database.ref().update({
 //   stressLevel: 9,
